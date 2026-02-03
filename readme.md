@@ -59,4 +59,5 @@ The Fast Loop (AI Simulation): The agent uses machine learning (M3GNet) to test 
 The Slow Loop (Validation): (Future Vision) Once the agent identifies a "Goldilocks" candidate, it can trigger traditional, high-precision simulations (DFT) to confirm the results.
 
 Summary
+
 This project represents a shift from passive tools to active agents. The Materials Project Deep Research system doesn't just answer questions; it solves problems. By combining the vast knowledge of the Materials Project with the creative potential of AI simulations, it empowers researchers to discover the materials of the future—faster and smarter.
