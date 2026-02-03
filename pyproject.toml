@@ -1,0 +1,12 @@
+[project]
+name = "mp-deep-research"
+version = "0.1.0"
+dependencies = [
+    "langchain-core",
+    "mp-api",
+    "pymatgen",
+    "matplotlib"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

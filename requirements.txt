@@ -1,0 +1,10 @@
+langchain
+langgraph
+langsmith
+mp-api
+pymatgen
+numpy
+pandas
+matplotlib
+pydantic
+jupyterlab
