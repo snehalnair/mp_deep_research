@@ -44,6 +44,7 @@ from .datasets import (
 
 from .evaluator import (
     MaterialsResearchEvaluator,
+    EvaluationConfig,
     EvaluationReport,
 )
 
@@ -112,6 +113,7 @@ __all__ = [
     
     # === MAIN EVALUATOR ===
     "MaterialsResearchEvaluator",
+    "EvaluationConfig",
     "EvaluationReport",
     
     # === TOOL VALIDATION (Glass Box) ===

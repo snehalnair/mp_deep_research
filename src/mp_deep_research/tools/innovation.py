@@ -66,8 +66,8 @@ def substitute_species(
         substitute_species("mp-19017", {"Li": "Na"})  # LiFePO4 → NaFePO4
     """
     if not substitutions:
-        return """ERROR: 'substitutions' argument is REQUIRED.
-    
+        return "ERROR: 'substitutions' argument is REQUIRED."
+
     from mp_api.client import MPRester
 
     # 1. Get Parent Structure

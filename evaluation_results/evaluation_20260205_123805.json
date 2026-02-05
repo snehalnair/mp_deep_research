@@ -1,0 +1,59 @@
+{
+  "experiment_name": "MPDeepResearch_v1",
+  "timestamp": "2026-02-05T12:34:31.190111",
+  "overall_score": 0.1208,
+  "agent": {
+    "task_completion_rate": 0.0,
+    "tool_selection_accuracy": 0.0,
+    "tool_usage_efficiency": 0.0,
+    "avg_tool_calls": 4.62,
+    "reasoning_coherence": 0.0,
+    "scientific_accuracy": 0.0,
+    "avg_execution_time_s": 13.39,
+    "error_rate": 1.0
+  },
+  "discovery_benchmark": {
+    "suite_name": "DiscoveryBenchmark",
+    "total_tasks": 9,
+    "completed_tasks": 0,
+    "completion_rate": 0.0,
+    "avg_overall_score": 0.0,
+    "avg_property_score": 0.0,
+    "avg_material_score": 0.0,
+    "avg_reasoning_score": 0.0,
+    "scores_by_difficulty": {
+      "easy": 0.0,
+      "medium": 0.0,
+      "hard": 0.0
+    },
+    "total_time_seconds": 115.63
+  },
+  "innovation_benchmark": {
+    "suite_name": "InnovationBenchmark",
+    "total_tasks": 7,
+    "completed_tasks": 0,
+    "completion_rate": 0.0,
+    "avg_overall_score": 0.0,
+    "avg_property_score": 0.0,
+    "avg_material_score": 0.0,
+    "avg_reasoning_score": 0.0,
+    "scores_by_difficulty": {
+      "easy": 0.0,
+      "medium": 0.0,
+      "hard": 0.0
+    },
+    "total_time_seconds": 98.63
+  },
+  "confidence_intervals": {
+    "overall_score": [
+      0.06,
+      0.06
+    ]
+  },
+  "reasoning_evaluation": {
+    "scientific_accuracy": 4.2,
+    "reasoning_coherence": 4.0,
+    "appropriate_uncertainty": 3.8,
+    "completeness": 4.1
+  }
+}

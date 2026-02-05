@@ -18,6 +18,12 @@ from dataclasses import dataclass
 from mp_deep_research.research_agent_scope import create_research_agent
 from mp_deep_research.state_scope import AgentState
 
+# Prefer the project-level wrapper if present (tool-using agent).
+try:
+    from agent_wrapper import AgentWrapper as _ExternalAgentWrapper
+except Exception:
+    _ExternalAgentWrapper = None
+
 # Evaluation framework imports
 from mp_deep_research.evaluation import (
     # Core evaluation
@@ -190,6 +196,10 @@ class AgentWrapper:
         })
 
 
+if _ExternalAgentWrapper is not None:
+    AgentWrapper = _ExternalAgentWrapper
+
+
 # =============================================================================
 # STEP 3: DEFINE SUCCESS CHECKER
 # =============================================================================
@@ -352,9 +362,15 @@ def run_full_evaluation(api_key: str = None, output_dir: str = "./evaluation_res
     """
     Run full evaluation for paper submission.
     """
+    import os
     print("=" * 60)
     print("FULL EVALUATION - Paper Submission")
     print("=" * 60)
+
+    if api_key:
+        os.environ.setdefault("MP_API_KEY", api_key)
+    elif not os.environ.get("MP_API_KEY"):
+        raise RuntimeError("MP_API_KEY is required for full evaluation.")
     
     # Initialize agent
     agent = AgentWrapper(api_key=api_key)
@@ -379,7 +395,6 @@ def run_full_evaluation(api_key: str = None, output_dir: str = "./evaluation_res
     report = evaluator.run_full_evaluation(agent_runner=agent.run)
     
     # Save results
-    import os
     os.makedirs(output_dir, exist_ok=True)
     
     report.save(f"{output_dir}/evaluation_report.json")

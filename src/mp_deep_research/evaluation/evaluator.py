@@ -154,6 +154,13 @@ class EvaluationReport:
         }
         
         return result
+
+    def save(self, path: str) -> None:
+        """Save report as JSON to the given path."""
+        output_path = Path(path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with output_path.open("w") as f:
+            json.dump(self.to_dict(), f, indent=2)
     
     def to_latex(self) -> str:
         """Generate LaTeX table for paper."""

@@ -11,7 +11,10 @@ from datetime import datetime
 from typing import Literal
 import os
 
-from langchain.chat_models import init_chat_model
+try:
+    from langchain_community.chat_models import init_chat_model
+except ImportError:
+    init_chat_model = None
 from langchain_core.messages import HumanMessage, AIMessage, get_buffer_string
 from langgraph.graph import StateGraph, START, END
 from langgraph.types import Command
@@ -52,7 +55,11 @@ def validate_chemical_system(system: str) -> bool:
 
 # Initialize model - configurable via environment variable
 LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-4o-mini")
-model = init_chat_model(model=f"openai:{LLM_MODEL}", temperature=0.0)
+if init_chat_model is not None:
+    model = init_chat_model(model=f"openai:{LLM_MODEL}", temperature=0.0)
+else:
+    from langchain_openai import ChatOpenAI
+    model = ChatOpenAI(model=LLM_MODEL, temperature=0.0)
 
 # ===== WORKFLOW NODES =====
 
@@ -152,6 +159,17 @@ def build_scoping_workflow():
 
     # Compile the workflow
     return builder.compile()
+
+def create_research_agent(api_key: str | None = None):
+    """
+    Factory for the research agent.
+
+    The api_key parameter is accepted for compatibility with the evaluation
+    wrapper; this scoping agent relies on environment configuration.
+    """
+    _ = api_key
+    return build_scoping_workflow()
+
 
 # Create the compiled workflow
 scope_research = build_scoping_workflow()

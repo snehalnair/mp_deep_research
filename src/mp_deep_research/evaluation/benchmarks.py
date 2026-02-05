@@ -109,6 +109,17 @@ class DiscoveryBenchmark:
     
     def __init__(self):
         self.tasks = self._create_tasks()
+
+    def get_tasks(self, difficulty: str | TaskDifficulty | None = None, limit: int | None = None) -> List[BenchmarkTask]:
+        """Get tasks filtered by difficulty with an optional limit."""
+        tasks = self.tasks
+        if difficulty:
+            if isinstance(difficulty, str):
+                difficulty = TaskDifficulty(difficulty.lower())
+            tasks = [t for t in tasks if t.difficulty == difficulty]
+        if limit is not None:
+            tasks = tasks[:limit]
+        return tasks
     
     def _create_tasks(self) -> List[BenchmarkTask]:
         """Create the discovery benchmark tasks."""
@@ -295,6 +306,17 @@ class InnovationBenchmark:
         self.tasks = self._create_tasks()
         # Ground truth energies from DFT (for validation)
         self.ground_truth_energies = self._load_ground_truth()
+
+    def get_tasks(self, difficulty: str | TaskDifficulty | None = None, limit: int | None = None) -> List[BenchmarkTask]:
+        """Get tasks filtered by difficulty with an optional limit."""
+        tasks = self.tasks
+        if difficulty:
+            if isinstance(difficulty, str):
+                difficulty = TaskDifficulty(difficulty.lower())
+            tasks = [t for t in tasks if t.difficulty == difficulty]
+        if limit is not None:
+            tasks = tasks[:limit]
+        return tasks
     
     def _create_tasks(self) -> List[BenchmarkTask]:
         """Create the innovation benchmark tasks."""
